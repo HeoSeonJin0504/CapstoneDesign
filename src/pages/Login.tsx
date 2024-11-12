@@ -33,6 +33,7 @@ const Button = styled.button`
   color: black;
   font-size: 1.5em;
   background-color: white;
+  cursor: pointer;
 
   &:hover {
     
