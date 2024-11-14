@@ -19,13 +19,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: "PretendardLight";
-  src: url("./fonts/Pretendard-Light.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 * {
   font-family: "PretendardLight", Arial, sans-serif;
   margin: 0;

@@ -14,16 +14,11 @@ const Style = styled.div`
     margin-top: 20px;
     font-size: 1.5em;
   }
-
-  h2 {
-    margin-top: 70px;
-    font-size: 2em;
-  }
 `;
 
 const Button = styled(NavLink)`
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -43,7 +38,6 @@ const Home = () => {
       <p className="bodytext">
         아이들 그림을 저장하고, 그림을 업로드하면 이야기를 생성할 수 있습니다.
       </p>
-      <h2>먼저 로그인을 진행해 주세요</h2>
       <Button to="/login">로그인</Button>
     </Style>
   );

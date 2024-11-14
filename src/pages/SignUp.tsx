@@ -89,6 +89,16 @@ const LinkContainer = styled.div`
   }
 `;
 
+const EmailInput = styled.input`
+  flex: 1;
+  margin-bottom: 8px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2em;
+  width: 50%;
+`;
+
 const SignUp = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -154,7 +164,7 @@ const SignUp = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <InputContainer>
-          <Input type="text" placeholder="이메일" />
+          <EmailInput type="text" placeholder="[선택] 이메일 주소" />
           <span style={{ margin: "0 5px" }}>@</span>
           <Select>
             <option value="gmail.com">gmail.com</option>
