@@ -31,14 +31,22 @@ const Button = styled(NavLink)`
   }
 `;
 
-const Home = () => {
+interface HomeProps {
+  user: { name: string; id: string } | null;
+}
+
+const Home = ({ user }:HomeProps) => {
   return (
     <Style>
       <h1>아이들 그림을 통해 이야기를 생성해 보세요!</h1>
       <p className="bodytext">
         아이들 그림을 저장하고, 그림을 업로드하면 이야기를 생성할 수 있습니다.
       </p>
-      <Button to="/login">로그인</Button>
+      {user ? (
+        <Button to="/get-started">실습하기</Button>
+      ) : (
+        <Button to="/login">로그인</Button>
+      )}
     </Style>
   );
 };
