@@ -72,9 +72,23 @@ const GetStarted = () => {
     }
   };
 
-  const handleAnalyzeClick = () => {
-    // 분석 시작 버튼 클릭 시 실행할 기능
-    alert("분석 시작");
+  const handleAnalyzeClick = async () => {
+  
+    const formData = new FormData();
+    formData.append('file', selectedImage as Blob);
+  
+    try {
+      const response = await fetch('http://localhost:8000/image-upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+      console.log('Response data:', result);
+      alert(result);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('이미지 분석에 실패했습니다.');
+    }
   };
 
   return (
