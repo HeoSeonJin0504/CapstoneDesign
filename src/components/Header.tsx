@@ -49,6 +49,11 @@ const Header = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/get-started">
+            <h1>실습하기</h1>
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/team">
             <h1>팀원</h1>
           </NavLink>

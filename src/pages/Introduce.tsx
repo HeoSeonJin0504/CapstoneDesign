@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const LeftContainer = styled.div`
-  flex: 1.3;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,7 +22,7 @@ const LeftContainer = styled.div`
 `;
 
 const RightContainer = styled.div`
-  flex: 2;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
