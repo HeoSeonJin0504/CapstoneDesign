@@ -20,8 +20,8 @@ const Form = styled.div`
   padding: 20px;
   border: 2px solid black;
   border-radius: 10px;
-  width: 70vw;
-  height: 70vh;
+  width: 50vw;
+  height: 50vh;
 `;
 
 // 기본 파일 선택 스타일 숨기기
@@ -29,9 +29,17 @@ const FileInput = styled.input`
   display: none;
 `;
 
+// 버튼 컨테이너
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* 버튼 사이의 간격 추가 */
+  margin-top: 20px;
+`;
+
 // 버튼
 const Button = styled.button`
-  margin-top: 30px;
   padding: 15px;
   text-decoration: none;
   border-radius: 5px;
@@ -47,8 +55,8 @@ const Button = styled.button`
 
 // 이미지 미리보기 스타일 정의
 const ImagePreview = styled.img`
-  max-width: 70%;
-  max-height: 70%;
+  max-width: 100%;
+  max-height: 100%;
   margin-bottom: 10px;
   border: 1px solid black;
   border-radius: 5px;
@@ -72,9 +80,27 @@ const GetStarted = () => {
     }
   };
 
-  const handleAnalyzeClick = () => {
-    // 분석 시작 버튼 클릭 시 실행할 기능
-    alert("분석 시작");
+  const handleAnalyzeClick = async () => {
+    if (!selectedImage) {
+      alert('이미지를 먼저 업로드 해주세요.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', selectedImage as Blob);
+
+    try {
+      const response = await fetch('http://localhost:8000/image-upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+      console.log('Response data:', result);
+      alert(result);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('이미지 분석에 실패했습니다.');
+    }
   };
 
   return (
@@ -83,8 +109,10 @@ const GetStarted = () => {
         {imagePreview && (
           <ImagePreview src={imagePreview} alt="Selected file preview" />
         )}
+      </Form>
+      <ButtonContainer>
         <label htmlFor="fileInput" aria-label="이미지 선택">
-          <Button as="span">이미지 열기</Button>
+          <Button as="span">사진 열기</Button>
         </label>
         <FileInput
           id="fileInput"
@@ -92,10 +120,10 @@ const GetStarted = () => {
           accept="image/*"
           onChange={handleFileChange}
         />
-        {selectedImage && (
-          <Button onClick={handleAnalyzeClick}>분석 시작</Button>
-        )}
-      </Form>
+        <Button onClick={handleAnalyzeClick}>
+          분석 시작
+        </Button>
+      </ButtonContainer>
     </Container>
   );
 };

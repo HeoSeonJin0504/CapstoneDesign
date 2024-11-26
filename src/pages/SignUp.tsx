@@ -104,12 +104,35 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailDomain, setEmailDomain] = useState("gmail.com");
 
-  const handleCheckDuplicate = () => {
-    alert("이미 있는 아이디입니다.");
+  const handleCheckDuplicate = async () => {
+    // 중복 확인 버튼
+    try {
+      const response = await fetch('http://localhost:8000/check-duplicate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: username }),
+      });
+
+      const result = await response.json();
+      if (result.exists) {
+        alert("이미 있는 아이디입니다.");
+      } else {
+        alert("가입 가능한 아이디입니다.");
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('중복 확인에 실패했습니다. 서버 Error!');
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    // 회원가입 버튼
     e.preventDefault();
 
     if (!username) {
@@ -132,8 +155,32 @@ const SignUp = () => {
       return;
     }
 
-    alert("회원가입이 완료되었습니다.");
-    navigate("/login");
+    if (!name) {
+      alert("이름을 입력해주세요.");
+      return;
+    }
+
+    const emailAddress = email ? `${email}@${emailDomain}` : '';
+
+    try {
+      const response = await fetch('http://localhost:8000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: username, password, name, email: emailAddress }),
+      });
+
+      if (response.ok) {
+        alert("회원가입이 완료되었습니다.");
+        navigate("/login");
+      } else {
+        alert("회원가입에 실패했습니다.");
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('서버 Error!');
+    }
   };
 
   return (
@@ -163,10 +210,21 @@ const SignUp = () => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+        <Input
+          type="text"
+          placeholder="이름"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <InputContainer>
-          <EmailInput type="text" placeholder="[선택] 이메일 주소" />
+          <EmailInput
+            type="text"
+            placeholder="[선택] 이메일 주소"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <span style={{ margin: "0 5px" }}>@</span>
-          <Select>
+          <Select value={emailDomain} onChange={(e) => setEmailDomain(e.target.value)}>
             <option value="gmail.com">gmail.com</option>
             <option value="naver.com">naver.com</option>
             <option value="daum.net">daum.net</option>

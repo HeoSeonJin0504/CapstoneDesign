@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { color } from "../theme";
 import { useState } from "react";
+import { userNameAtom, userPasswordAtom } from "../state";
+import { useAtom } from "jotai";
 
 const Style = styled.div`
   display: flex;
@@ -58,8 +60,8 @@ interface LoginProps {
 }
 
 const Login = ({ setUser }: LoginProps) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useAtom(userNameAtom);
+  const [password, setPassword] = useAtom(userPasswordAtom);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
