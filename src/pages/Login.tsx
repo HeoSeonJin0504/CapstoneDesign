@@ -4,13 +4,22 @@ import { color } from "../theme";
 import { useState } from "react";
 import { userNameAtom, userPasswordAtom } from "../state";
 import { useAtom } from "jotai";
+import backgroundImage from "../photos/loginbackground.png";
 
 const Style = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 200px;
   height: 100vh;
+
+  background-image: url(${backgroundImage});
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  background-blend-mode: lighten;
+
+  h1 {
+    margin-top: 180px;
+  }
 `;
 
 const Form = styled.form`

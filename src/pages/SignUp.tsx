@@ -2,14 +2,21 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { color } from "../theme";
 import { useState } from "react";
+import backgroundImage from "../photos/signupbackground.png";
 
 const Style = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 130px;
+
+  min-height: 100vh;
+  background-image: url(${backgroundImage});
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  background-blend-mode: lighten;
 
   h1 {
+    margin-top: 180px;
     margin-bottom: 15px;
   }
 `;

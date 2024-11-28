@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import backgroundImage from "../photos/backgroundtest2.png";
+import backgroundImage from "../photos/homebackgroundtest.png";
 
 const Style = styled.div`
   text-align: center;
