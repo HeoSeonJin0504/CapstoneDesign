@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -6,11 +6,12 @@ const Style = styled.header`
   width: 100%;
   height: 70px;
   padding: 0 20px;
-  padding-right: 40px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  margin-bottom: 2px;
 
   ul,
   ul li,
@@ -33,6 +34,20 @@ const Style = styled.header`
     text-decoration: none;
     color: black;
     position: relative;
+    font-size: 1.2em; /* 글씨 크기 조정 */
+    padding: 10px 20px; 
+    border-radius: 10px; /* 모서리를 둥글게 */
+    transition: background-color 0.5s, color 0.5s; /* 전환 애니메이션 */
+  }
+
+  a.active {
+    border: 2px solid #ccc; /* 테두리 추가 */
+    border-bottom: none;
+    background-color: #e0e0e0; /* 배경색 */
+  }
+
+  a:hover {
+    background-color: #e0e0e0; /* 마우스 오버 시 배경색 변경 */
   }
 `;
 
@@ -70,6 +85,7 @@ interface HeaderProps {
 const Header = ({ user, setUser }: HeaderProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     setUser(null);
@@ -79,24 +95,24 @@ const Header = ({ user, setUser }: HeaderProps) => {
 
   return (
     <Style>
-      <NavLink to="/">
-        <h1>물론이조!</h1>
+      <NavLink to="/" className={location.pathname === "/" ? "active" : ""}>
+        <h1>Main</h1>
       </NavLink>
       <ul>
         <li>
-          <NavLink to="/introduce">
+          <NavLink to="/introduce" className={location.pathname === "/introduce" ? "active" : ""}>
             <h1>소개</h1>
           </NavLink>
         </li>
         {user && (
           <li>
-            <NavLink to="/get-started">
+            <NavLink to="/get-started" className={location.pathname === "/get-started" ? "active" : ""}>
               <h1>실습하기</h1>
             </NavLink>
           </li>
         )}
         <li>
-          <NavLink to="/team">
+          <NavLink to="/team" className={location.pathname === "/team" ? "active" : ""}>
             <h1>팀원</h1>
           </NavLink>
         </li>
@@ -113,7 +129,7 @@ const Header = ({ user, setUser }: HeaderProps) => {
               )}
             </div>
           ) : (
-            <NavLink to="/login">
+            <NavLink to="/login" className={location.pathname === "/login" ? "active" : ""}>
               <h1>로그인</h1>
             </NavLink>
           )}

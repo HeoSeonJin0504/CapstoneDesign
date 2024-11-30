@@ -5,6 +5,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+
+  min-height: 100vh; /* 최소 높이 설정, 푸터 고정 */
 `;
 
 const Title = styled.h1`

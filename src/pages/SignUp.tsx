@@ -9,15 +9,20 @@ const Style = styled.div`
   flex-direction: column;
   align-items: center;
 
-  min-height: 100vh;
   background-image: url(${backgroundImage});
   background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+
+
   background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode: lighten;
 
+  // justify-content: center;
   h1 {
-    margin-top: 180px;
+    margin-top: 150px;
     margin-bottom: 15px;
+    font-size: 2.2em;
   }
 `;
 
@@ -53,17 +58,19 @@ const Select = styled.select`
 const CheckButton = styled.button`
   margin-left: 10px;
   padding: 15px;
-  text-decoration: none;
-  border-radius: 5px;
-  border: 1px solid black;
-  color: black;
-  font-size: 1em;
-  background-color: white;
-  cursor: pointer;
   margin-bottom: 8px;
+  text-decoration: none;
+
+  background: #abb7b7;
+  border: 2px solid #abb7b7;
+  font-weight: bold;
+  border-radius: 7px;
+  color: white;
+
+  font-size: 1em;
+  cursor: pointer;
 
   &:hover {
-    /* 추가 스타일을 원하면 여기에 작성 */
   }
 `;
 
@@ -71,15 +78,23 @@ const Button = styled.button`
   margin-top: 30px;
   padding: 15px;
   text-decoration: none;
-  border-radius: 5px;
-  border: 1px solid black;
-  color: black;
+
   font-size: 1.5em;
-  background-color: white;
   cursor: pointer;
 
+  background: #abb7b7;
+  border: 2px solid #abb7b7;
+  font-weight: bold;
+  border-radius: 7px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s, box-shadow 0.3s; 
+
   &:hover {
-    /* 추가 스타일을 원하면 여기에 작성 */
+    background: #fff;
+    color: #abb7b7;
+    transform: scale(1.02); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
   }
 `;
 
@@ -89,6 +104,7 @@ const LinkContainer = styled.div`
   margin-top: 20px;
   width: 400px;
   color: ${color.lightGray};
+  font-size: 1.2em;
 
   a {
     text-decoration: none;

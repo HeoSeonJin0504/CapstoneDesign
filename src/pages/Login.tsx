@@ -10,15 +10,19 @@ const Style = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
 
   background-image: url(${backgroundImage});
-  background-size: 100% 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+
   background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode: lighten;
 
   h1 {
     margin-top: 180px;
+    font-size: 2.2em;
   }
 `;
 
@@ -40,14 +44,23 @@ const Button = styled.button`
   margin-top: 30px;
   padding: 15px;
   text-decoration: none;
-  border-radius: 5px;
-  border: 1px solid black;
-  color: black;
   font-size: 1.5em;
   background-color: white;
   cursor: pointer;
 
+  background: #abb7b7;
+  border: 2px solid #abb7b7;
+  font-weight: bold;
+  border-radius: 7px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s, box-shadow 0.3s; 
+
   &:hover {
+    background: #fff;
+    color: #abb7b7;
+    transform: scale(1.02); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
   }
 `;
 
@@ -57,6 +70,7 @@ const LinkContainer = styled.div`
   margin-top: 20px;
   width: 400px;
   color: ${color.lightGray};
+  font-size: 1.2em;
 
   a {
     text-decoration: none;
