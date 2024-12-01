@@ -1,47 +1,53 @@
 import styled from "styled-components";
+import user from "../photos/user.png";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
-
-  min-height: 100vh; /* 최소 높이 설정, 푸터 고정 */
+  min-height: 100vh; 
 `;
 
 const Title = styled.h1`
-  margin-bottom: 30px;
-  font-size: 2.5em; /* 제목 크기 증가 */
+  margin-bottom: 80px;
+  font-size: 2.5em; 
 `;
 
 const TeamContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 50px;
-  justify-content: center;
-  gap: 30px; /* 간격 증가 */
+  //justify-content: center;
+  gap: 30px; 
 `;
 
 const MemberCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px; /* 패딩 증가 */
+  padding: 30px; 
   border: 1px solid #ccc;
   border-radius: 10px;
-  width: 250px; /* 카드 너비 증가 */
+  width: 250px; 
   text-align: center;
 `;
 
+const MemberImage = styled.img`
+  width: 150px; 
+  height: 150px; 
+  border-radius: 50%; 
+  margin-bottom: 20px; 
+`;
+
 const MemberRole = styled.p`
-  margin-bottom: 15px; /* 마진 증가 */
-  font-size: 1.5em; /* 글꼴 크기 증가 */
-  color: #666;
+  margin-bottom: 15px; 
+  font-size: 1.5em; 
+  color: black;
 `;
 
 const MemberDescription = styled.p`
-  font-size: 1.2em; /* 글꼴 크기 증가 */
-  color: #333;
+  font-size: 1.2em; 
+  color: black;
 `;
 
 const Team = () => {
@@ -49,18 +55,22 @@ const Team = () => {
     {
       role: "AI, 백엔드 관리",
       description: "임희진",
+      image: user, 
     },
     {
       role: "DB, 서버 개발",
       description: "송진우",
+      image: user, 
     },
     {
       role: "프론트엔드",
       description: "허선진",
+      image: user, 
     },
     {
       role: "HW 관리, 디자인",
       description: "김소희",
+      image: user, 
     },
   ];
 
@@ -70,6 +80,7 @@ const Team = () => {
       <TeamContainer>
         {teamMembers.map((member, index) => (
           <MemberCard key={index}>
+            <MemberImage src={member.image} alt={member.description} />
             <MemberRole>{member.role}</MemberRole>
             <MemberDescription>{member.description}</MemberDescription>
           </MemberCard>

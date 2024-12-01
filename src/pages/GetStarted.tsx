@@ -82,24 +82,24 @@ const GetStarted = () => {
 
   const handleAnalyzeClick = async () => {
     if (!selectedImage) {
-      alert('이미지를 먼저 업로드 해주세요.');
+      alert("이미지를 먼저 업로드 해주세요.");
       return;
     }
 
     const formData = new FormData();
-    formData.append('file', selectedImage as Blob);
+    formData.append("file", selectedImage as Blob);
 
     try {
-      const response = await fetch('http://localhost:8000/image-upload', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8000/image-upload", {
+        method: "POST",
         body: formData,
       });
       const result = await response.json();
-      console.log('Response data:', result);
-      alert(result);
+      console.log(result.filename, result.story_name, result.story_content);
+      alert(result.filename + " / " + result.story_name + " / " + result.story_content);
     } catch (error) {
-      console.error('Error:', error);
-      alert('이미지 분석에 실패했습니다.');
+      console.error("Error:", error);
+      alert("이미지 분석에 실패했습니다.");
     }
   };
 
@@ -120,9 +120,7 @@ const GetStarted = () => {
           accept="image/*"
           onChange={handleFileChange}
         />
-        <Button onClick={handleAnalyzeClick}>
-          분석 시작
-        </Button>
+        <Button onClick={handleAnalyzeClick}>분석 시작</Button>
       </ButtonContainer>
     </Container>
   );
