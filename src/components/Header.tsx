@@ -22,8 +22,7 @@ const Style = styled.header`
   }
 
   ul {
-    gap: 60px;
-    z-index: 1000;
+    gap: 30px;
   }
 
   ul li {
@@ -34,20 +33,20 @@ const Style = styled.header`
     text-decoration: none;
     color: black;
     position: relative;
-    font-size: 1.2em; /* 글씨 크기 조정 */
+    font-size: 1.2em; 
     padding: 10px 20px; 
-    border-radius: 10px; /* 모서리를 둥글게 */
+    border-radius: 10px; 
     transition: background-color 0.5s, color 0.5s; /* 전환 애니메이션 */
   }
 
   a.active {
-    border: 2px solid #ccc; /* 테두리 추가 */
+    border: 2px solid #ccc; 
     border-bottom: none;
-    background-color: #e0e0e0; /* 배경색 */
+    background-color: #e0e0e0; 
   }
 
   a:hover {
-    background-color: #e0e0e0; /* 마우스 오버 시 배경색 변경 */
+    background-color: #e0e0e0; 
   }
 `;
 
