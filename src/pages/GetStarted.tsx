@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { color } from "../theme";
 
-// 컨테이너 스타일 정의
 const Container = styled.div`
   display: flex;
   min-height: 100vh;
   padding: 20px;
 `;
 
-// 왼쪽 컨테이너 스타일 정의
 const LeftContainer = styled.div`
   flex: 1;
   display: flex;
@@ -22,7 +20,6 @@ const LeftContainer = styled.div`
   border-radius: 10px;
 `;
 
-// 오른쪽 컨테이너 스타일 정의
 const RightContainer = styled.div`
   flex: 1;
   display: flex;
@@ -35,8 +32,7 @@ const RightContainer = styled.div`
   overflow-y: auto;
 `;
 
-// 본문 내용을 감싸는 폼
-const Form = styled.div`
+const LeftForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,6 +41,21 @@ const Form = styled.div`
   border-radius: 10px;
   width: 40vw;
   height: 40vh;
+  text-align: center;
+  justify-content: center;
+  margin-top: 120px;
+`;
+
+const RightForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 40vw;
+  min-height: 40vh;
+  max-height: 80vh;
   text-align: center;
   justify-content: center;
   margin-top: 120px;
@@ -80,7 +91,7 @@ const Button = styled.button`
   }
 `;
 
-// 이미지 미리보기 스타일 정의
+// 이미지 미리보기
 const ImagePreview = styled.img`
   max-width: 100%;
   max-height: 100%;
@@ -89,16 +100,16 @@ const ImagePreview = styled.img`
   border-radius: 5px;
 `;
 
-// 동화 제목 스타일 정의
+// 동화 제목
 const StoryTitle = styled.h2`
   font-size: 2em;
   margin-bottom: 20px;
   color: #343a40;
 `;
 
-// 동화 내용 스타일 정의
+// 동화 내용
 const StoryContent = styled.p`
-  font-size: 1.2em;
+  font-size: 1.5em;
   line-height: 1.5;
   color: #343a40;
 `;
@@ -138,14 +149,6 @@ const GetStarted = () => {
         body: formData,
       });
       const result = await response.json();
-      console.log(result.filename, result.story_name, result.story_content);
-      alert(
-        result.filename +
-          " / " +
-          result.story_name +
-          " / " +
-          result.story_content
-      );
       setStoryTitle(result.story_name);
       setStoryContent(result.story_content);
     } catch (error) {
@@ -157,11 +160,11 @@ const GetStarted = () => {
   return (
     <Container>
       <LeftContainer>
-        <Form>
+        <LeftForm>
           {imagePreview && (
             <ImagePreview src={imagePreview} alt="Selected file preview" />
           )}
-        </Form>
+        </LeftForm>
         <ButtonContainer>
           <label htmlFor="fileInput" aria-label="이미지 선택">
             <Button as="span">사진 열기</Button>
@@ -176,7 +179,7 @@ const GetStarted = () => {
         </ButtonContainer>
       </LeftContainer>
       <RightContainer>
-        <Form>
+        <RightForm>
           {storyTitle || storyContent ? (
             <>
               <StoryTitle>{storyTitle}</StoryTitle>
@@ -185,7 +188,7 @@ const GetStarted = () => {
           ) : (
             <StoryTitle>이미지를 업로드해서 동화를 생성해 주세요!</StoryTitle>
           )}
-        </Form>
+        </RightForm>
         {storyTitle && storyContent && (
           <ButtonContainer>
             <Button>점자 생성</Button>
