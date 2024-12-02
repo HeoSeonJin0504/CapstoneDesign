@@ -12,7 +12,6 @@ const LeftContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-
   align-items: center;
   padding: 40px;
   background-color: ${color.white};
@@ -21,7 +20,7 @@ const LeftContainer = styled.div`
 `;
 
 const RightContainer = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,6 +29,7 @@ const RightContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 const LeftForm = styled.div`
@@ -55,7 +55,7 @@ const RightForm = styled.div`
   border-radius: 10px;
   width: 40vw;
   min-height: 40vh;
-  max-height: 80vh;
+  max-height: 100vh;
   text-align: center;
   justify-content: center;
   margin-top: 120px;
