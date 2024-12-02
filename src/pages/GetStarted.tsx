@@ -192,6 +192,7 @@ const GetStarted = () => {
         {storyTitle && storyContent && (
           <ButtonContainer>
             <Button>점자 생성</Button>
+            <Button>동화 저장하기</Button>
           </ButtonContainer>
         )}
       </RightContainer>
