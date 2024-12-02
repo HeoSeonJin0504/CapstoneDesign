@@ -8,8 +8,8 @@ const Style = styled.footer`
   justify-content: center;
   align-items: center;
   
-  /* Footer 위에 구분선 추가 */
   box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.15);
+  margin-top: 2px;
 
   color: ${color.lightGray};
   font-size: 1.1em;

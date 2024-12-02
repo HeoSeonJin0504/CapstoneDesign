@@ -45,8 +45,8 @@ const Form = styled.div`
   padding: 20px;
   border: 2px solid black;
   border-radius: 10px;
-  width: 50vw;
-  height: 50vh;
+  width: 40vw;
+  height: 40vh;
 `;
 
 // 기본 파일 선택 스타일 숨기기
@@ -59,7 +59,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px; /* 버튼 사이의 간격 추가 */
+  gap: 20px; 
   margin-top: 20px;
 `;
 
@@ -165,12 +165,19 @@ const GetStarted = () => {
             accept="image/*"
             onChange={handleFileChange}
           />
-          <Button onClick={handleAnalyzeClick}>분석 시작</Button>
+          <Button onClick={handleAnalyzeClick}>동화 생성</Button>
         </ButtonContainer>
       </LeftContainer>
       <RightContainer>
-        {storyTitle && <StoryTitle>{storyTitle}</StoryTitle>}
-        {storyContent && <StoryContent>{storyContent}</StoryContent>}
+        <Form>
+        <StoryTitle>이미지를 업로드해서 동화를 생성해 주세요!{storyTitle || ""}</StoryTitle>
+        <StoryContent>{storyContent || ""}</StoryContent>
+        </Form>
+        {storyTitle && storyContent && (
+          <ButtonContainer>
+            <Button>점자 생성</Button>
+          </ButtonContainer>
+        )}
       </RightContainer>
     </Container>
   );

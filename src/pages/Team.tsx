@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import user from "../photos/user.png";
-import backgroundImage from "../photos/teambackground2.png";
+import backgroundImage from "../photos/teambackground.png";
 import github from "../photos/github.png";
 
 const Container = styled.div`
@@ -8,6 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   background-image: url(${backgroundImage});
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -81,7 +82,7 @@ const Team = () => {
       role: "DB, 서버 개발",
       description: "송진우",
       image: user,
-      githubLink: "https://github.com/HeoSeonJin0504",
+      githubLink: "https://github.com/ssong77",
     },
     {
       role: "프론트엔드",
@@ -93,7 +94,7 @@ const Team = () => {
       role: "HW 관리, 디자인",
       description: "김소희",
       image: user,
-      githubLink: "https://github.com/HeoSeonJin0504",
+      githubLink: "https://github.com/shkim429",
     },
   ];
 
