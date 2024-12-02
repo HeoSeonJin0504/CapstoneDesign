@@ -5,7 +5,7 @@ import { useState } from "react";
 const Style = styled.header`
   width: 100%;
   height: 70px;
-  padding: 0 20px;
+  padding: 0 25px;
 
   display: flex;
   justify-content: space-between;

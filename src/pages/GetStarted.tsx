@@ -5,10 +5,35 @@ import { color } from "../theme";
 // 컨테이너 스타일 정의
 const Container = styled.div`
   display: flex;
+  min-height: 100vh;
+  padding: 20px;
+`;
+
+// 왼쪽 컨테이너 스타일 정의
+const LeftContainer = styled.div`
+  flex: 1;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 60px;
-  height: 100vh;
+  padding: 40px;
+  background-color: ${color.white};
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+`;
+
+// 오른쪽 컨테이너 스타일 정의
+const RightContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px;
+  background-color: ${color.white};
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow-y: auto;
 `;
 
 // 본문 내용을 감싸는 폼
@@ -42,11 +67,12 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   padding: 15px;
   text-decoration: none;
-  border-radius: 5px;
-  border: 1px solid black;
-  color: black;
+  background: #abb7b7;
+  border: 2px solid #abb7b7;
+  font-weight: bold;
+  border-radius: 7px;
+  color: white;
   font-size: 1.5em;
-  background-color: white;
   cursor: pointer;
 
   &:hover {
@@ -62,10 +88,26 @@ const ImagePreview = styled.img`
   border-radius: 5px;
 `;
 
+// 동화 제목 스타일 정의
+const StoryTitle = styled.h2`
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #343a40;
+`;
+
+// 동화 내용 스타일 정의
+const StoryContent = styled.p`
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: #343a40;
+`;
+
 const GetStarted = () => {
   // 선택된 이미지 파일과 미리보기 URL을 저장할 상태 변수
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [storyTitle, setStoryTitle] = useState<string | null>(null);
+  const [storyContent, setStoryContent] = useState<string | null>(null);
 
   // 파일 선택 시 호출되는 함수
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,6 +139,8 @@ const GetStarted = () => {
       const result = await response.json();
       console.log(result.filename, result.story_name, result.story_content);
       alert(result.filename + " / " + result.story_name + " / " + result.story_content);
+      setStoryTitle(result.story_name);
+      setStoryContent(result.story_content);
     } catch (error) {
       console.error("Error:", error);
       alert("이미지 분석에 실패했습니다.");
@@ -105,23 +149,29 @@ const GetStarted = () => {
 
   return (
     <Container>
-      <Form>
-        {imagePreview && (
-          <ImagePreview src={imagePreview} alt="Selected file preview" />
-        )}
-      </Form>
-      <ButtonContainer>
-        <label htmlFor="fileInput" aria-label="이미지 선택">
-          <Button as="span">사진 열기</Button>
-        </label>
-        <FileInput
-          id="fileInput"
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-        <Button onClick={handleAnalyzeClick}>분석 시작</Button>
-      </ButtonContainer>
+      <LeftContainer>
+        <Form>
+          {imagePreview && (
+            <ImagePreview src={imagePreview} alt="Selected file preview" />
+          )}
+        </Form>
+        <ButtonContainer>
+          <label htmlFor="fileInput" aria-label="이미지 선택">
+            <Button as="span">사진 열기</Button>
+          </label>
+          <FileInput
+            id="fileInput"
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+          <Button onClick={handleAnalyzeClick}>분석 시작</Button>
+        </ButtonContainer>
+      </LeftContainer>
+      <RightContainer>
+        {storyTitle && <StoryTitle>{storyTitle}</StoryTitle>}
+        {storyContent && <StoryContent>{storyContent}</StoryContent>}
+      </RightContainer>
     </Container>
   );
 };
