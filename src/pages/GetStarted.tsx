@@ -14,7 +14,7 @@ const LeftContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
   padding: 40px;
   background-color: ${color.white};
@@ -27,7 +27,6 @@ const RightContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   padding: 40px;
   background-color: ${color.white};
@@ -41,12 +40,14 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   padding: 20px;
   border: 2px solid black;
   border-radius: 10px;
   width: 40vw;
   height: 40vh;
+  text-align: center;
+  justify-content: center;
+  margin-top: 120px;
 `;
 
 // 기본 파일 선택 스타일 숨기기
@@ -59,7 +60,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px; 
+  gap: 20px;
   margin-top: 20px;
 `;
 
@@ -138,7 +139,13 @@ const GetStarted = () => {
       });
       const result = await response.json();
       console.log(result.filename, result.story_name, result.story_content);
-      alert(result.filename + " / " + result.story_name + " / " + result.story_content);
+      alert(
+        result.filename +
+          " / " +
+          result.story_name +
+          " / " +
+          result.story_content
+      );
       setStoryTitle(result.story_name);
       setStoryContent(result.story_content);
     } catch (error) {
@@ -170,8 +177,14 @@ const GetStarted = () => {
       </LeftContainer>
       <RightContainer>
         <Form>
-        <StoryTitle>이미지를 업로드해서 동화를 생성해 주세요!{storyTitle || ""}</StoryTitle>
-        <StoryContent>{storyContent || ""}</StoryContent>
+          {storyTitle || storyContent ? (
+            <>
+              <StoryTitle>{storyTitle}</StoryTitle>
+              <StoryContent>{storyContent}</StoryContent>
+            </>
+          ) : (
+            <StoryTitle>이미지를 업로드해서 동화를 생성해 주세요!</StoryTitle>
+          )}
         </Form>
         {storyTitle && storyContent && (
           <ButtonContainer>
