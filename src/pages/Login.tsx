@@ -87,14 +87,28 @@ const Login = ({ setUser }: LoginProps) => {
   const [password, setPassword] = useAtom(userPasswordAtom);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (username === "admin" && password === "12345") {
-      setUser({ name: "관리자", id: "admin" });
-      navigate("/");
-    } else {
-      alert("아이디 또는 비밀번호가 잘못되었습니다.");
+    try {
+      const response = await fetch('http://localhost:8000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        const user = await response.json();
+        setUser(user);
+        navigate("/");
+      } else {
+        alert("아이디 또는 비밀번호가 잘못되었습니다.");
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('로그인에 실패했습니다. 서버 Error!');
     }
   };
 
