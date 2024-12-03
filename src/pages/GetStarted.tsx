@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { color } from "../theme";
+import backgroundImage from "../photos/getstartedbackground.png";
 
 const Container = styled.div`
   display: flex;
-  min-height: 100vh;
   padding: 20px;
+
+  background-image: url(${backgroundImage});
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  background-blend-mode: lighten;
 `;
 
 const LeftContainer = styled.div`
@@ -14,9 +22,6 @@ const LeftContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  background-color: ${color.white};
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
 `;
 
 const RightContainer = styled.div`
@@ -25,9 +30,6 @@ const RightContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  background-color: ${color.white};
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
   overflow-y: auto;
   overflow-x: hidden;
 `;
@@ -44,6 +46,7 @@ const LeftForm = styled.div`
   text-align: center;
   justify-content: center;
   margin-top: 120px;
+  background-color: white;
 `;
 
 const RightForm = styled.div`
@@ -59,6 +62,7 @@ const RightForm = styled.div`
   text-align: center;
   justify-content: center;
   margin-top: 120px;
+  background-color: white;
 `;
 
 // 기본 파일 선택 스타일 숨기기
