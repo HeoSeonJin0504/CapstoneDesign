@@ -36,7 +36,7 @@ const Style = styled.header`
     font-size: 1.2em; 
     padding: 10px 20px; 
     border-radius: 10px; 
-    transition: background-color 0.5s, color 0.5s; /* 전환 애니메이션 */
+    transition: background-color 0.5s, color 0.5s; 
   }
 
   a.active {
@@ -69,7 +69,7 @@ const DropdownButton = styled.button`
   background: none;
   cursor: pointer;
   text-align: left;
-  font-size: 1.3em; /* 버튼 글씨 크기 조정 */
+  font-size: 1.3em; 
 
   &:hover {
     background-color: #f0f0f0;

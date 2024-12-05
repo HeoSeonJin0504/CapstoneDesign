@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { color } from "../theme";
 
 const Style = styled.footer`
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,6 +15,10 @@ const Style = styled.footer`
   font-size: 1.1em;
 
   padding: 5px 0;
+
+  p {
+    margin: 3px;
+    }
 `;
 
 const Footer = () => {

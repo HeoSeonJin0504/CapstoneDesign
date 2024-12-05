@@ -102,18 +102,30 @@ const Introduce = () => {
       <RightContainer>
         <RightTitle>프로그램 사용 방법</RightTitle>
         <StepContainer>
-          <RightDescription>1. 프로그램을 실행합니다.</RightDescription>
-          <Image src="src/photos/introduce.png" />
+          <RightDescription>1. 로그인을 진행해 주세요.</RightDescription>
+          <Image src="src/photos/introduce/introduce1.png" />
         </StepContainer>
         <StepContainer>
           <RightDescription>
-            2. 로그인 화면에서 아이디와 비밀번호를 입력합니다.
+            2. 상단의 '실습하기'를 클릭해 주세요.
           </RightDescription>
           <Image src="src/photos/introduce.png" />
         </StepContainer>
         <StepContainer>
           <RightDescription>
-            3. 로그인 후 다양한 기능을 탐색할 수 있습니다.
+            3. '사진 열기' 버튼을 클락해서 그림을 업로드해 주세요.
+          </RightDescription>
+          <Image src="src/photos/introduce/introduce3.png" />
+        </StepContainer>
+        <StepContainer>
+          <RightDescription>
+            4. '동화 생성' 버튼을 클릭해 주세요.
+          </RightDescription>
+          <Image src="src/photos/introduce/introduce4.png" />
+        </StepContainer>
+        <StepContainer>
+          <RightDescription>
+            5. '이미지 저장' 버튼을 클릭하면 이미지 저장이 가능합니다.
           </RightDescription>
           <Image src="src/photos/introduce.png" />
         </StepContainer>

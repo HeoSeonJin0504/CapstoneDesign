@@ -128,8 +128,11 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [emailLocal, setEmailLocal] = useState("");
   const [emailDomain, setEmailDomain] = useState("gmail.com");
+
+  const [error, setError] = useState<string | null>(null); // ??
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleCheckDuplicate = async () => {
     // 중복 확인 버튼
@@ -139,11 +142,11 @@ const SignUp = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id: username }),
+        body: JSON.stringify({ username }),
       });
 
-      const result = await response.json();
-      if (result.exists) {
+      const data = await response.json();
+      if (data.exists) {
         alert("이미 있는 아이디입니다.");
       } else {
         alert("가입 가능한 아이디입니다.");
@@ -183,7 +186,10 @@ const SignUp = () => {
       return;
     }
 
-    const emailAddress = email ? `${email}@${emailDomain}` : '';
+    const email = emailDomain !== "none" ? `${emailLocal}@${emailDomain}` : null;
+
+    setLoading(true);
+    setError(null);
 
     try {
       const response = await fetch('http://localhost:8000/signup', {
@@ -191,18 +197,22 @@ const SignUp = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id: username, password, name, email: emailAddress }),
+        body: JSON.stringify({ username, password, name, email }),
       });
 
       if (response.ok) {
         alert("회원가입이 완료되었습니다.");
         navigate("/login");
       } else {
+        const errorData = await response.json();
+        setError(errorData.detail || "회원가입에 실패했습니다.");
         alert("회원가입에 실패했습니다.");
       }
     } catch (error) {
       console.error('Error:', error);
       alert('서버 Error!');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -243,8 +253,8 @@ const SignUp = () => {
           <EmailInput
             type="text"
             placeholder="[선택] 이메일 주소"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={emailLocal}
+            onChange={(e) => setEmailLocal(e.target.value)}
           />
           <span style={{ margin: "0 5px" }}>@</span>
           <Select value={emailDomain} onChange={(e) => setEmailDomain(e.target.value)}>
@@ -255,7 +265,10 @@ const SignUp = () => {
             <option value="none">없음(선택안함)</option>
           </Select>
         </InputContainer>
-        <Button type="submit">회원가입</Button>
+        <Button type="submit" disabled = {loading}>
+          {loading ? "회원가입 중 ..." : "회원가입"}
+          </Button>
+          {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
       </Form>
       <LinkContainer>
         <Link to="/login">로그인</Link>

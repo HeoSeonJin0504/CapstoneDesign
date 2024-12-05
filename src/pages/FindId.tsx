@@ -1,10 +1,16 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
+const Style = styled.div`
+  display: flex;
+  min-height: 100vh;
+`;
 
 const FindId = () => {
-    return (
-        <h1>아이디를 찾고 싶으세요?ㅋㅋ</h1>
-    );
+  return (
+    <Style>
+      <h1>구현 예정입니다.</h1>
+    </Style>
+  );
 };
 
 export default FindId;
