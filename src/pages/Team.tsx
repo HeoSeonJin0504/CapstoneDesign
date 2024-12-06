@@ -16,17 +16,33 @@ const Container = styled.div`
   min-width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode: lighten;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    padding: 20px;
+    background-size: cover;
+  }
 `;
 
 const Title = styled.h1`
   margin-bottom: 80px;
   font-size: 2.5em;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    margin-bottom: 40px;
+    font-size: 2em;
+  }
 `;
 
 const TeamContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  justify-content: center;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 const MemberCard = styled.div`
@@ -40,6 +56,11 @@ const MemberCard = styled.div`
   text-align: center;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    width: 100%;
+    padding: 20px;
+  }
 `;
 
 const MemberImage = styled.img`
@@ -48,6 +69,11 @@ const MemberImage = styled.img`
   border-radius: 50%;
   margin-bottom: 20px;
   border: 1px solid #ccc;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 const MemberName = styled.p`
@@ -55,11 +81,19 @@ const MemberName = styled.p`
   font-size: 1.8em;
   font-weight: bold;
   color: black;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    font-size: 1.5em;
+  }
 `;
 
 const MemberRole = styled.p`
   font-size: 1.3em;
   color: black;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    font-size: 1.1em;
+  }
 `;
 
 const GithubIcon = styled.img`
@@ -68,6 +102,11 @@ const GithubIcon = styled.img`
   margin-top: 10px;
   border-radius: 50%;
   cursor: pointer;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const Team = () => {

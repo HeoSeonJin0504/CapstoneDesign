@@ -48,6 +48,22 @@ const Style = styled.header`
   a:hover {
     background-color: #e0e0e0; 
   }
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+
+    ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    a {
+      font-size: 1em;
+      padding: 5px 10px;
+    }
+  }
 `;
 
 const Dropdown = styled.div`
@@ -60,6 +76,12 @@ const Dropdown = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   z-index: 1000;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    top: auto;
+    bottom: -70px;
+    right: 0;
+  }
 `;
 
 const DropdownButton = styled.button`

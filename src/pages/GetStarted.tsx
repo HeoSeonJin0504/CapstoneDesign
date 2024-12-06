@@ -6,14 +6,17 @@ import backgroundImage from "../photos/getstartedbackground.png";
 const Container = styled.div`
   display: flex;
   padding: 20px;
-
   background-image: url(${backgroundImage});
   background-size: 100% 100%;
   background-repeat: no-repeat;
   min-height: 100vh;
-
   background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode: lighten;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 10px;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -22,6 +25,10 @@ const LeftContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 40px;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const RightContainer = styled.div`
@@ -32,6 +39,10 @@ const RightContainer = styled.div`
   padding: 40px;
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const LeftForm = styled.div`
@@ -47,6 +58,12 @@ const LeftForm = styled.div`
   justify-content: center;
   margin-top: 120px;
   background-color: white;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 30vh;
+    margin-top: 20px;
+  }
 `;
 
 const RightForm = styled.div`
@@ -63,23 +80,32 @@ const RightForm = styled.div`
   justify-content: center;
   margin-top: 120px;
   background-color: white;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    min-height: 30vh;
+    margin-top: 20px;
+  }
 `;
 
-// 기본 파일 선택 스타일 숨기기
 const FileInput = styled.input`
   display: none;
 `;
 
-// 버튼 컨테이너
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
-// 버튼
 const Button = styled.button`
   padding: 15px;
   text-decoration: none;
@@ -93,9 +119,12 @@ const Button = styled.button`
 
   &:hover {
   }
+  
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
 `;
 
-// 이미지 미리보기
 const ImagePreview = styled.img`
   max-width: 100%;
   max-height: 100%;
@@ -104,14 +133,12 @@ const ImagePreview = styled.img`
   border-radius: 5px;
 `;
 
-// 동화 제목
 const StoryTitle = styled.h2`
   font-size: 2em;
   margin-bottom: 20px;
   color: #343a40;
 `;
 
-// 동화 내용
 const StoryContent = styled.p`
   font-size: 1.5em;
   line-height: 1.5;
@@ -119,13 +146,11 @@ const StoryContent = styled.p`
 `;
 
 const GetStarted = () => {
-  // 선택된 이미지 파일과 미리보기 URL을 저장할 상태 변수
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [storyTitle, setStoryTitle] = useState<string | null>(null);
   const [storyContent, setStoryContent] = useState<string | null>(null);
 
-  // 파일 선택 시 호출되는 함수
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];

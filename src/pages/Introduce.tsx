@@ -4,9 +4,15 @@ import { color } from "../theme";
 
 const Container = styled.div`
   display: flex;
+  flex-direction: row;
   height: 100vh;
   padding: 20px;
   background-color: #f8f9fa;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -19,6 +25,10 @@ const LeftContainer = styled.div`
   background-color: ${color.white};
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    margin-bottom: 20px;
+  }
 `;
 
 const RightContainer = styled.div`
@@ -32,6 +42,10 @@ const RightContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow-y: auto;
+
+  @media (max-width: 768px) { // 모바일 세로 모드(반응형)
+    overflow-y: visible;
+  }
 `;
 
 const LeftTitle = styled.h1`
@@ -67,7 +81,7 @@ const Button = styled(Link)`
   transition: background-color 0.3s ease;
 
   &:hover {
-
+    background-color: #e0e0e0;
   }
 `;
 
@@ -93,8 +107,8 @@ const Introduce = () => {
       <LeftContainer>
         <LeftTitle>AI 기반 어린이 그림 동화 생성기</LeftTitle>
         <LeftDescription>
-        그림을 디지털로 업로드하여 저장하고 인공지능을 활용하여<br/>
-        주제를 분석해 동화를 생성하는 프로그램입니다.
+          그림을 디지털로 업로드하여 저장하고 인공지능을 활용하여<br/>
+          주제를 분석해 동화를 생성하는 프로그램입니다.
         </LeftDescription>
         <Image src="src/photos/introduce.png" alt="프로그램 실행 사진" />
         <Button to="/login">로그인</Button>
