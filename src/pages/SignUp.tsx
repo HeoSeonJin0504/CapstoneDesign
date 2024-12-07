@@ -8,21 +8,22 @@ const Style = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   background-image: url(${backgroundImage});
   background-size: 100% 100%;
   background-repeat: no-repeat;
   min-height: 100vh;
-
-
   background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode: lighten;
 
-  // justify-content: center;
   h1 {
     margin-top: 150px;
     margin-bottom: 15px;
     font-size: 2.2em;
+
+    @media (max-width: 768px) {
+      margin-top: 100px;
+      font-size: 1.8em;
+    }
   }
 `;
 
@@ -30,11 +31,20 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 400px;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 const InputContainer = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 const Input = styled.input`
@@ -44,6 +54,11 @@ const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1.2em;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 1em;
+  }
 `;
 
 const Select = styled.select`
@@ -53,6 +68,11 @@ const Select = styled.select`
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1.2em;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 1em;
+  }
 `;
 
 const CheckButton = styled.button`
@@ -60,17 +80,22 @@ const CheckButton = styled.button`
   padding: 15px;
   margin-bottom: 8px;
   text-decoration: none;
-
   background: #abb7b7;
   border: 2px solid #abb7b7;
   font-weight: bold;
   border-radius: 7px;
   color: white;
-
   font-size: 1em;
   cursor: pointer;
 
   &:hover {
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.9em;
   }
 `;
 
@@ -78,23 +103,26 @@ const Button = styled.button`
   margin-top: 30px;
   padding: 15px;
   text-decoration: none;
-
   font-size: 1.5em;
   cursor: pointer;
-
   background: #abb7b7;
   border: 2px solid #abb7b7;
   font-weight: bold;
   border-radius: 7px;
   color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.3s, box-shadow 0.3s; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 
   &:hover {
     background: #fff;
     color: #abb7b7;
-    transform: scale(1.02); 
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.02);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 1.2em;
   }
 `;
 
@@ -110,6 +138,11 @@ const LinkContainer = styled.div`
     text-decoration: none;
     color: ${color.lightGray};
   }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    font-size: 1em;
+  }
 `;
 
 const EmailInput = styled.input`
@@ -120,6 +153,11 @@ const EmailInput = styled.input`
   border-radius: 5px;
   font-size: 1.2em;
   width: 50%;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 1em;
+  }
 `;
 
 const SignUp = () => {
@@ -131,11 +169,10 @@ const SignUp = () => {
   const [emailLocal, setEmailLocal] = useState("");
   const [emailDomain, setEmailDomain] = useState("gmail.com");
 
-  const [error, setError] = useState<string | null>(null); // ??
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleCheckDuplicate = async () => {
-    // 중복 확인 버튼
     try {
       const response = await fetch('http://localhost:8000/check-duplicate', {
         method: 'POST',
@@ -158,7 +195,6 @@ const SignUp = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    // 회원가입 버튼
     e.preventDefault();
 
     if (!username) {
@@ -265,10 +301,10 @@ const SignUp = () => {
             <option value="none">없음(선택안함)</option>
           </Select>
         </InputContainer>
-        <Button type="submit" disabled = {loading}>
+        <Button type="submit" disabled={loading}>
           {loading ? "회원가입 중 ..." : "회원가입"}
-          </Button>
-          {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+        </Button>
+        {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
       </Form>
       <LinkContainer>
         <Link to="/login">로그인</Link>

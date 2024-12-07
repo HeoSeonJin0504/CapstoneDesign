@@ -10,20 +10,22 @@ const Style = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  //justify-content: center;
-
   background-image: url(${backgroundImage});
-  background-size: contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   min-height: 100vh;
-
   background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode: lighten;
 
   h1 {
     margin-top: 180px;
     font-size: 2.2em;
+
+    @media (max-width: 768px) {
+      margin-top: 100px;
+      font-size: 1.8em;
+    }
   }
 `;
 
@@ -31,6 +33,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 400px;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 const Input = styled.input`
@@ -39,6 +45,11 @@ const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1.2em;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+    font-size: 1em;
+  }
 `;
 
 const Button = styled.button`
@@ -48,20 +59,24 @@ const Button = styled.button`
   font-size: 1.5em;
   background-color: white;
   cursor: pointer;
-
   background: #abb7b7;
   border: 2px solid #abb7b7;
   font-weight: bold;
   border-radius: 7px;
   color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.3s, box-shadow 0.3s; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 
   &:hover {
     background: #fff;
     color: #abb7b7;
-    transform: scale(1.02); 
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.02);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 1.2em;
   }
 `;
 
@@ -76,6 +91,11 @@ const LinkContainer = styled.div`
   a {
     text-decoration: none;
     color: ${color.lightGray};
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    font-size: 1em;
   }
 `;
 
