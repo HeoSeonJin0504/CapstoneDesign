@@ -172,6 +172,7 @@ const SignUp = () => {
 
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [isDuplicate, setIsDuplicate] = useState<boolean>(false);
 
   const handleCheckDuplicate = async () => {
     try {
@@ -186,8 +187,10 @@ const SignUp = () => {
       const data = await response.json();
       if (data.exists) {
         alert("이미 있는 아이디입니다.");
+        setIsDuplicate(true);
       } else {
         alert("가입 가능한 아이디입니다.");
+        setIsDuplicate(false);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -197,6 +200,11 @@ const SignUp = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isDuplicate) {
+      alert("가입이 불가능한 아이디 입니다.");
+      return;
+    }
 
     if (!username) {
       alert("아이디를 입력해주세요.");
