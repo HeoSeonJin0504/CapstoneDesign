@@ -192,21 +192,17 @@ const GetStarted = () => {
       alert("먼저 동화를 생성해 주세요.");
       return;
     }
-
+  
     try {
-      const response = await fetch(`${API_BASE_URL}braille-generate`, {
+      await fetch(`${API_BASE_URL}send-story`, {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ story_content: storyContent }),
       });
-      const result = await response.json();
-      setBrailleContent(result.braille_content);
-      alert("점자 생성이 완료되었습니다.");
     } catch (error) {
-      console.error("Error:", error);
-      alert("점자 생성에 실패했습니다.");
+      console.error("Error during API call:", error);
     }
   };
 
