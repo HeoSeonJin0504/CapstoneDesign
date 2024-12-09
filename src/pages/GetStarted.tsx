@@ -150,7 +150,6 @@ const GetStarted = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [storyTitle, setStoryTitle] = useState<string | null>(null);
   const [storyContent, setStoryContent] = useState<string | null>(null);
-  const [, setBrailleContent] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -183,7 +182,7 @@ const GetStarted = () => {
       setStoryContent(result.story_content);
     } catch (error) {
       console.error("Error:", error);
-      alert("이미지 분석에 실패했습니다.");
+      alert("이미지 분석에 실패했습니다. 서버 error!");
     }
   };
 
@@ -192,17 +191,47 @@ const GetStarted = () => {
       alert("먼저 동화를 생성해 주세요.");
       return;
     }
-  
+
     try {
-      await fetch(`${API_BASE_URL}send-story`, {
+      await fetch(`${API_BASE_URL}braille-generate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ story_content: storyContent }),
       });
+      alert("점자 생성이 완료되었습니다.");
     } catch (error) {
       console.error("Error during API call:", error);
+      alert("점자 생성에 실패했습니다. 서버 error!");
+    }
+  };
+
+  const handleSaveImageClick = async () => {
+    if (!selectedImage || !storyTitle || !storyContent) {
+      alert("그림을 업로드해서 그림을 생성해 주세요.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", selectedImage as Blob);
+    formData.append("story_title", storyTitle);
+    formData.append("story_content", storyContent);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}save-image`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert("동화 저장이 완료되었습니다.");
+      } else {
+        alert("동화 저장에 실패했습니다.");
+      }
+    } catch (error) {
+      console.error("Error during API call:", error);
+      alert("동화 저장에 실패했습니다. 서버 error!");
     }
   };
 
@@ -241,7 +270,7 @@ const GetStarted = () => {
         {storyTitle && storyContent && (
           <ButtonContainer>
             <Button onClick={handleBrailleClick}>점자 생성</Button>
-            <Button>동화 저장하기</Button>
+            <Button onClick={handleSaveImageClick}>그림 및 동화 저장</Button>
           </ButtonContainer>
         )}
       </RightContainer>
