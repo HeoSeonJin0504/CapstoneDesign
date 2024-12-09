@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {Home, GetStarted, Introduce, Login, SignUp, Team, FindId, FindPw} from "./pages";
 import { Header, Footer } from "./components";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { color } from "../theme";
 import backgroundImage from "../photos/getstartedbackground.png";
-import { API_BASE_URL } from "../config"; 
+import { API_BASE_URL } from "../config";
 
 const Container = styled.div`
   display: flex;

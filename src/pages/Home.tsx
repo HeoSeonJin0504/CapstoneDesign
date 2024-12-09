@@ -192,15 +192,15 @@ const Home = ({ user }: HomeProps) => {
       <div className="cards">
         <div className="card">
           <h2>그림 저장</h2>
-          <p>그림을 업로드하여<p/>저장할 수 있습니다.</p>
+          <p>그림을 업로드하여 <br/> 저장할 수 있습니다.</p>
         </div>
         <div className="card">
           <h2>그림 확인</h2>
-          <p>업로드한 그림을<p/>확인할 수 있습니다.</p>
+          <p>업로드한 그림을 <br/> 확인할 수 있습니다.</p>
         </div>
         <div className="card">
           <h2>동화 생성</h2>
-          <p>업로드한 그림으로<p />동화를 생성할 수 있습니다.</p>
+          <p>업로드한 그림으로 <br/> 동화를 생성할 수 있습니다.</p>
         </div>
       </div>
     </Style>

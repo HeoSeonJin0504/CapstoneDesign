@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { color } from "../theme";
-import { useState } from "react";
 import { userNameAtom, userPasswordAtom } from "../state";
 import { useAtom } from "jotai";
 import backgroundImage from "../photos/loginbackground.png";
