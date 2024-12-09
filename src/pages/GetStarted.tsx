@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { color } from "../theme";
 import backgroundImage from "../photos/getstartedbackground.png";
 import { API_BASE_URL } from "../config";
 
@@ -151,7 +150,7 @@ const GetStarted = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [storyTitle, setStoryTitle] = useState<string | null>(null);
   const [storyContent, setStoryContent] = useState<string | null>(null);
-  const [brailleContent, setBrailleContent] = useState<string | null>(null);
+  const [, setBrailleContent] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
