@@ -150,6 +150,7 @@ const GetStarted = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [storyTitle, setStoryTitle] = useState<string | null>(null);
   const [storyContent, setStoryContent] = useState<string | null>(null);
+  const [brailleContent, setBrailleContent] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -183,6 +184,29 @@ const GetStarted = () => {
     } catch (error) {
       console.error("Error:", error);
       alert("이미지 분석에 실패했습니다.");
+    }
+  };
+
+  const handleBrailleClick = async () => {
+    if (!storyContent) {
+      alert("먼저 동화를 생성해 주세요.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8000/braille-generate", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ story_content: storyContent }),
+      });
+      const result = await response.json();
+      setBrailleContent(result.braille_content);
+      alert("점자 생성이 완료되었습니다.");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("점자 생성에 실패했습니다.");
     }
   };
 
@@ -220,7 +244,7 @@ const GetStarted = () => {
         </RightForm>
         {storyTitle && storyContent && (
           <ButtonContainer>
-            <Button>점자 생성</Button>
+            <Button onClick={handleBrailleClick}>점자 생성</Button>
             <Button>동화 저장하기</Button>
           </ButtonContainer>
         )}
