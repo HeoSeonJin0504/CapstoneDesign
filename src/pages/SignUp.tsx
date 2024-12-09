@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { color } from "../theme";
 import { useState } from "react";
 import backgroundImage from "../photos/signupbackground.png";
+import { API_BASE_URL } from "../config";
 
 const Style = styled.div`
   display: flex;
@@ -174,7 +175,7 @@ const SignUp = () => {
 
   const handleCheckDuplicate = async () => {
     try {
-      const response = await fetch('http://localhost:8000/check-duplicate', {
+      const response = await fetch(`${API_BASE_URL}check-duplicate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -228,7 +229,7 @@ const SignUp = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/signup', {
+      const response = await fetch(`${API_BASE_URL}signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

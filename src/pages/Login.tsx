@@ -5,6 +5,7 @@ import { useState } from "react";
 import { userNameAtom, userPasswordAtom } from "../state";
 import { useAtom } from "jotai";
 import backgroundImage from "../photos/loginbackground.png";
+import { API_BASE_URL } from "../config";
 
 const Style = styled.div`
   display: flex;
@@ -118,7 +119,7 @@ const Login = ({ setUser }: LoginProps) => {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/login', {
+      const response = await fetch(`${API_BASE_URL}login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

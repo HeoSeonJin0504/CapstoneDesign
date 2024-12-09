@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { color } from "../theme";
 import backgroundImage from "../photos/getstartedbackground.png";
+import { API_BASE_URL } from "../config"; 
 
 const Container = styled.div`
   display: flex;
@@ -174,7 +175,7 @@ const GetStarted = () => {
     formData.append("file", selectedImage as Blob);
 
     try {
-      const response = await fetch("http://localhost:8000/image-upload", {
+      const response = await fetch(`${API_BASE_URL}image-upload`, {
         method: "POST",
         body: formData,
       });
@@ -194,7 +195,7 @@ const GetStarted = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/braille-generate", {
+      const response = await fetch(`${API_BASE_URL}braille-generate`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
