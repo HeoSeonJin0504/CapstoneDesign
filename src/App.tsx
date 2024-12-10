@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {Home, GetStarted, Introduce, Login, SignUp, Team, FindId, FindPw} from "./pages";
+import { Home, GetStarted, Introduce, Login, SignUp, Team, FindId, FindPw } from "./pages";
 import { Header, Footer } from "./components";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
@@ -26,7 +26,7 @@ function App() {
           <Header user={user} setUser={setUser} />
           <Routes>
             <Route path="/" element={<Home user={user} />} />
-            <Route path="/introduce" element={<Introduce />} />
+            <Route path="/introduce" element={<Introduce user={user} />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/team" element={<Team />} />

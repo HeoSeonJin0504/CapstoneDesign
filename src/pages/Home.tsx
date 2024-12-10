@@ -19,8 +19,8 @@ const Style = styled.div`
   h1 {
     margin-top: 150px;
     font-size: 3.5em;
-    background: rgba(255, 255, 255, 0.6);
     padding: 10px;
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 10px;
     display: inline-block;
   }
@@ -116,8 +116,8 @@ const Button = styled(NavLink)`
   padding: 10px 30px;
   text-decoration: none;
 
-  background: #abb7b7;
-  border: 2px solid #abb7b7;
+  background: #bdc2bb;
+  border: 2px solid #bdc2bb;
   font-weight: bold;
   border-radius: 7px;
   color: white;

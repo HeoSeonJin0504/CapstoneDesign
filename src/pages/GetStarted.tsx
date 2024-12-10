@@ -6,12 +6,25 @@ import { API_BASE_URL } from "../config";
 const Container = styled.div`
   display: flex;
   padding: 20px;
-  background-image: url(${backgroundImage});
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  position: relative;
   min-height: 100vh;
-  background-color: rgba(255, 255, 255, 0.5);
-  background-blend-mode: lighten;
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background-image: url(${backgroundImage});
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -119,7 +132,7 @@ const Button = styled.button`
 
   &:hover {
   }
-  
+
   @media (max-width: 768px) {
     margin-top: 10px;
   }
@@ -219,7 +232,7 @@ const GetStarted = () => {
     formData.append("story_content", storyContent);
 
     try {
-      const response = await fetch(`${API_BASE_URL}save-image`, {
+      const response = await fetch(`${API_BASE_URL}save-story`, {
         method: "POST",
         body: formData,
       });
@@ -253,7 +266,7 @@ const GetStarted = () => {
             accept="image/*"
             onChange={handleFileChange}
           />
-          <Button onClick={handleAnalyzeClick}>동화 생성</Button>
+          <Button onClick={handleAnalyzeClick}>그림 저장 및 동화 생성</Button>
         </ButtonContainer>
       </LeftContainer>
       <RightContainer>
@@ -270,7 +283,7 @@ const GetStarted = () => {
         {storyTitle && storyContent && (
           <ButtonContainer>
             <Button onClick={handleBrailleClick}>점자 생성</Button>
-            <Button onClick={handleSaveImageClick}>그림 및 동화 저장</Button>
+            <Button onClick={handleSaveImageClick}>동화 저장</Button>
           </ButtonContainer>
         )}
       </RightContainer>
