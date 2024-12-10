@@ -29,7 +29,7 @@ const Style = styled.header`
   }
   h2 {
     margin-right: 10px;
-    font-size: 1.7em;
+    font-size: 1.75em;
   }
 
   ul,
