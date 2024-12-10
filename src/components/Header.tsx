@@ -25,11 +25,11 @@ const Style = styled.header`
   margin-bottom: 2px;
 
   h1 {
-    font-size: 1.6em;
+    font-size: 1.5em;
   }
   h2 {
     margin-right: 10px;
-    font-size: 1.8em;
+    font-size: 1.7em;
   }
 
   ul,
