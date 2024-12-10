@@ -74,7 +74,7 @@ const Style = styled.header`
     width: 100%;
     height: 7px;
     background-color: #e0e0e0;
-    animation: ${HeaderAnimation} 0.5s ease-out forwards;
+    animation: ${HeaderAnimation} 0.3s ease-out forwards;
   }
 
   a:hover {
