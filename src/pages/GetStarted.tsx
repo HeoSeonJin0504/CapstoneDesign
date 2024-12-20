@@ -63,14 +63,14 @@ const LeftForm = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
   width: 40vw;
   height: 40vh;
   text-align: center;
   justify-content: center;
   margin-top: 120px;
   background-color: white;
+  border: 2px solid #abb7b7;
+  border-radius: 10px;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -84,8 +84,6 @@ const RightForm = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
   width: 40vw;
   min-height: 40vh;
   max-height: 100vh;
@@ -94,6 +92,8 @@ const RightForm = styled.div`
   margin-top: 120px;
   background-color: white;
   overflow-y: auto;
+  border: 2px solid #abb7b7;
+  border-radius: 10px;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -158,11 +158,29 @@ const StoryContent = styled.p`
   color: #343a40;
 `;
 
+const Footer = styled.footer`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 1em;
+  color: #333;
+
+  a {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 const GetStarted = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [storyTitle, setStoryTitle] = useState<string | null>(null);
   const [storyContent, setStoryContent] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -182,6 +200,8 @@ const GetStarted = () => {
       return;
     }
 
+    setLoading(true);
+
     const formData = new FormData();
     formData.append("file", selectedImage as Blob);
 
@@ -196,6 +216,8 @@ const GetStarted = () => {
     } catch (error) {
       console.error("Error:", error);
       alert("이미지 분석에 실패했습니다. 서버 error!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -266,12 +288,16 @@ const GetStarted = () => {
             accept="image/*"
             onChange={handleFileChange}
           />
-          <Button onClick={handleAnalyzeClick}>그림 저장 및 동화 생성</Button>
+          <Button onClick={handleAnalyzeClick} disabled={loading}>
+            {loading ? "동화를 생성하는 중입니다!" : "그림 저장 및 동화 생성"}
+          </Button>
         </ButtonContainer>
       </LeftContainer>
       <RightContainer>
         <RightForm>
-          {storyTitle || storyContent ? (
+          {loading ? (
+            <StoryTitle>동화를 생성하는 중입니다!</StoryTitle>
+          ) : storyTitle || storyContent ? (
             <>
               <StoryTitle>{storyTitle}</StoryTitle>
               <StoryContent>{storyContent}</StoryContent>
@@ -287,6 +313,12 @@ const GetStarted = () => {
           </ButtonContainer>
         )}
       </RightContainer>
+      <Footer>
+        Designed by{" "}
+        <a href="https://kr.freepik.com/free-vector/hand-drawn-winter-people-collection_20109680.htm">
+          Freepik
+        </a>
+      </Footer>
     </Container>
   );
 };

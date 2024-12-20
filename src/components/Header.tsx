@@ -1,6 +1,7 @@
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
+import logo from "../photos/logo.png";
 
 const HeaderAnimation = keyframes` 
   from {
@@ -17,6 +18,8 @@ const Style = styled.header`
   width: 100%;
   height: 70px;
   padding: 0 20px;
+  font-family: "DunggeunmisoR", Arial, sans-serif; /* 글꼴 설정 */
+  font-weight: bold; /* 글꼴 굵게 설정 */
 
   display: flex;
   justify-content: space-between;
@@ -103,6 +106,17 @@ const Style = styled.header`
   }
 `;
 
+const Logo = styled.img`
+  height: 38px;
+  margin-left: 10px;
+  cursor: pointer;
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const Dropdown = styled.div`
   position: absolute;
   top: 70px;
@@ -157,7 +171,10 @@ const Header = ({ user, setUser }: HeaderProps) => {
         to="/"
         className={`main-link ${location.pathname === "/" ? "active" : ""}`}
       >
-        <h1>Main</h1>
+        <LogoContainer>
+          <h1>그림나래</h1>
+          <Logo src={logo} alt="로고" />
+        </LogoContainer>
       </NavLink>
       <ul>
         <li>

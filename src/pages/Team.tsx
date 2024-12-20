@@ -4,16 +4,16 @@ import backgroundImage from "../photos/teambackground.png";
 import github from "../photos/github.png";
 
 const Container = styled.div`
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh; 
+  min-width: 100vw;
+  position: relative;
   
   background-image: url(${backgroundImage});
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  min-width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode: lighten;
 
@@ -24,6 +24,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
+  margin-top: 100px;
   margin-bottom: 80px;
   font-size: 2.5em;
 
@@ -109,6 +110,23 @@ const GithubIcon = styled.img`
   }
 `;
 
+const Footer = styled.footer`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 1em;
+  color: #333;
+
+  a {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 const Team = () => {
   const teamMembers = [
     {
@@ -152,6 +170,12 @@ const Team = () => {
           </MemberCard>
         ))}
       </TeamContainer>
+      <Footer>
+        Designed by{" "}
+        <a href="https://kr.freepik.com/free-vector/flat-world-environment-day-background_26210190.htm#fromView=search&page=2&position=4&uuid=8cf41b08-7ec1-4797-a34d-62ea92057134">
+          Freepik
+        </a>
+      </Footer>
     </Container>
   );
 };

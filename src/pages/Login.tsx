@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { color } from "../theme";
 import { userNameAtom, userPasswordAtom } from "../state";
@@ -106,16 +107,13 @@ interface LoginProps {
 const Login = ({ setUser }: LoginProps) => {
   const [username, setUsername] = useAtom(userNameAtom);
   const [password, setPassword] = useAtom(userPasswordAtom);
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (username === "admin" && password === "12345") {
-      setUser({ name: "관리자", id: "admin" });
-      navigate("/");
-      return;
-    }
+    setLoading(true);
 
     try {
       const response = await fetch(`${API_BASE_URL}login`, {
@@ -136,6 +134,8 @@ const Login = ({ setUser }: LoginProps) => {
     } catch (error) {
       console.error('Error:', error);
       alert('로그인에 실패했습니다. 서버 Error!');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -155,7 +155,9 @@ const Login = ({ setUser }: LoginProps) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit">로그인</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? "로그인 중 ..." : "로그인"}
+        </Button>
       </Form>
       <LinkContainer>
         <Link to="/find-id">아이디 찾기</Link>

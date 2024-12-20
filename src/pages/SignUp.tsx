@@ -174,7 +174,31 @@ const SignUp = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [isDuplicate, setIsDuplicate] = useState<boolean>(false);
 
+  const validateUsername = (username: string) => {
+    const usernameRegex = /^[a-z][a-z0-9_]{4,19}$/;
+    return usernameRegex.test(username);
+  };
+
+  const validatePassword = (password: string) => {
+    const lengthRegex = /^.{8,16}$/;
+    const combinationRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])|(?=.*[a-zA-Z])(?=.*[!@#])|(?=.*[0-9])(?=.*[!@#])/;
+    const noSpaceRegex = /^\S*$/;
+    const noRepeatRegex = /^(?!.*(.)\1{2}).*$/;
+
+    return (
+      lengthRegex.test(password) &&
+      combinationRegex.test(password) &&
+      noSpaceRegex.test(password) &&
+      noRepeatRegex.test(password)
+    );
+  };
+
   const handleCheckDuplicate = async () => {
+    if (!validateUsername(username)) {
+      alert("아이디는 5~20자여야 하며 영어 소문자, 숫자, 특수문자(_)가 가능하고 첫 글자는 반드시 영어여야 합니다!");
+      return;
+    }
+
     try {
       const response = await fetch(`${API_BASE_URL}check-duplicate`, {
         method: 'POST',
@@ -202,7 +226,7 @@ const SignUp = () => {
     e.preventDefault();
 
     if (isDuplicate) {
-      alert("가입이 불가능한 아이디 입니다.");
+      alert("이미 가입된 아이디 입니다.");
       return;
     }
 
@@ -211,8 +235,18 @@ const SignUp = () => {
       return;
     }
 
+    if (!validateUsername(username)) {
+      alert("아이디는 5~20자여야 하며 영어 소문자, 숫자, 특수문자(_)가 가능하고 첫 글자는 반드시 영어여야 합니다.");
+      return;
+    }
+
     if (!password) {
       alert("비밀번호를 입력해주세요.");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      alert("비밀번호는 8~16자여야 하며 영문 대소문자, 숫자, 특수문자 중 2가지 이상 조합이어야 하며, 공백 및 연속된 문자가 없어야 합니다.");
       return;
     }
 
@@ -231,7 +265,7 @@ const SignUp = () => {
       return;
     }
 
-    const email = emailDomain !== "none" ? `${emailLocal}@${emailDomain}` : null;
+    const email = emailLocal && emailDomain !== "none" ? `${emailLocal}@${emailDomain}` : null;
 
     setLoading(true);
     setError(null);

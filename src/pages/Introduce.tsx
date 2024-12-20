@@ -161,6 +161,23 @@ const RightDescription = styled.p`
   border-radius: 10px;
 `;
 
+const Footer = styled.footer`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 1em;
+  color: #333;
+
+  a {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 interface IntroduceProps {
   user: { name: string; id: string } | null;
 }
@@ -219,6 +236,12 @@ const Introduce = ({ user }: IntroduceProps) => {
           <Image src="src/photos/introduce/introduce5.png" />
         </StepContainer>
       </RightContainer>
+      <Footer>
+        Designed by{" "}
+        <a href="https://www.freepik.com/free-vector/colorful-stick-man-illustration-set_21910288.htm#fromView=search&page=1&position=47&uuid=9db0e428-5351-467b-9a7f-529d07d5a9d4">
+          Freepik
+        </a>
+      </Footer>
     </Container>
   );
 };

@@ -1,26 +1,11 @@
 @font-face {
-  font-family: "PretendardLight";
-  src: url("./fonts/Pretendard-Light.otf") format("opentype");
-  font-weight: normal;
+  font-family: "DunggeunmisoR";
+  src: url("./fonts/Dunggeunmiso-R.otf") format("opentype");
   font-style: normal;
 }
-
-@font-face {
-  font-family: "PretendardMedium";
-  src: url("./fonts/Pretendard-Medium.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "PretendardBold";
-  src: url("./fonts/Pretendard-Bold.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 * {
-  font-family: "PretendardLight", Arial, sans-serif;
+  font-family: "DunggeunmisoR", Arial, sans-serif;
+  font-size: 18px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
