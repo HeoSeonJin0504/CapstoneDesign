@@ -107,8 +107,8 @@ const Style = styled.header`
 `;
 
 const Logo = styled.img`
-  height: 38px;
-  margin-left: 10px;
+  height: 65px;
+  margin-right: 10px;
   cursor: pointer;
 `;
 
@@ -172,8 +172,8 @@ const Header = ({ user, setUser }: HeaderProps) => {
         className={`main-link ${location.pathname === "/" ? "active" : ""}`}
       >
         <LogoContainer>
-          <h1>그림나래</h1>
           <Logo src={logo} alt="로고" />
+          <h1>그림나래</h1>
         </LogoContainer>
       </NavLink>
       <ul>

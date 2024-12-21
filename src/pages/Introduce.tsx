@@ -186,7 +186,7 @@ const Introduce = ({ user }: IntroduceProps) => {
   return (
     <Container>
       <LeftContainer>
-        <LeftTitle>AI 기반 어린이 그림 동화 생성기</LeftTitle>
+        <LeftTitle>그림나래</LeftTitle>
         <LeftDescription>
           그림을 디지털로 업로드하여 저장하고 인공지능을 활용하여
           <br />
