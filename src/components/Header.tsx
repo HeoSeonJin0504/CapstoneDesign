@@ -17,7 +17,7 @@ const HeaderAnimation = keyframes`
 const Style = styled.header`
   width: 100%;
   height: 70px;
-  padding: 0 20px;
+  padding: 0 10px;
   font-family: "DunggeunmisoR", Arial, sans-serif; /* 글꼴 설정 */
   font-weight: bold; /* 글꼴 굵게 설정 */
 
